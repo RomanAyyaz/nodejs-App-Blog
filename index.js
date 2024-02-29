@@ -9,6 +9,19 @@ const BlogRouter = require('./routes/blog');
 require('./db/connection')
 require('dotenv').config()
 
+
+
+const mongoose = require('mongoose');
+require('dotenv').config()
+mongoose.connect(process.env.MONGODB_URI).then(()=>{
+    console.log('Connected to Database Successfully')
+    app.listen(port, () => {
+        console.log(`Listening at port no ${port}`)
+    })
+}).catch((err)=>{
+    console.log(err)
+})
+
 app.set('view engine', 'ejs')
 app.set('views', path.resolve("./views"))
 app.use(express.json())
@@ -36,6 +49,3 @@ app.get('/',async (req, res) => {
 
 app.use('/user', UserRouter)
 app.use('/blog', BlogRouter)
-app.listen(port, () => {
-    console.log(`Listening at port no ${port}`)
-})
