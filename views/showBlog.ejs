@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <title>Blog Post</title>
+</head>
+
+<body>
+  <!-- Navbar code -->
+  <%- include('partials/navbar.ejs') %>
+  <div class="container">
+    <div class="container">
+      <h1 class="mt-2"><%= BlogData.title %></h1>
+      <p class="fw-bold">Written By <%= user.fullname %></p>
+      <div class="row ml-1"><%= BlogData.body %></div>
+    </div>
+  </div>
+  <div class="container mt-4">
+    <div class="row">
+      <form action="/blog/<%= BlogData._id %>" method="post" class="w-100">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            name="comment"
+            class="form-control"
+            placeholder="Enter your comment"
+            aria-label="Comment"
+            aria-describedby="basic-addon2"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-success" type="submit">Add Comment</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <h4>Comments(<%= Allcomments.length %>)</h4>
+    <% Allcomments.forEach(element => { %>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5 class="mb-0"><%= element.postedBy.fullname %></h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= element.comment %></p>
+          <!-- Like button and like count -->
+          <form action="/blog/comment/<%=element._id %>" method="post">
+              <button type="submit" class="btn btn-outline-primary">
+                  <%= element.likes.includes(user._id) ? 'Unlike' : 'Like' %>
+              </button>
+              <span class="ml-2"><%= element.likes.length %> Likes</span>
+          </form>
+      </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
