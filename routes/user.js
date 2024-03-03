@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const {signinGet,siginPost} = require('../controllers/signin')
-const { signUpGet, signUpPost} = require('../controllers/signup')
+const {signUpGet,signUpPost} = require('../controllers/signup')
 //User Signin Routes
 router.get('/signin',signinGet)
 router.post('/signin',siginPost)
