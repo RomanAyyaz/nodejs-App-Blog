@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 const Mailgen = require('mailgen');
+const User = require('../models/user')
+const {generateToken} = require('../middlewares/auth')
 require('dotenv').config()
 const signUpGet = (req,res)=>{
     const user = req.user || null;
