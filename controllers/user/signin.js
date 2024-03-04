@@ -1,7 +1,7 @@
-const User = require("../models/user");
-const Blog = require('../models/blog');
+const User = require("../../models/user");
+const Blog = require('../../models/blog');
 const bycryptjs = require('bcryptjs');
-const {generateToken} = require('../middlewares/auth')
+const {generateToken} = require('../../middlewares/auth')
 const signinGet = async (req,res)=>{
     const user = req.user || null;
     res.render('signin',{
