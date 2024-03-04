@@ -1,13 +1,12 @@
+require('./db/connection')
+require('dotenv').config()
 const express = require('express')
 const app = express();
 const path = require('path')
 const port = process.env.PORT || 8000;
-const {jwtMiddleware}   = require('./middlewares/auth')
 const cookieparser = require("cookie-parser")
 const UserRouter = require('./routes/user')
 const BlogRouter = require('./routes/blog');
-require('./db/connection')
-require('dotenv').config()
 
 const mongoose = require('mongoose');
 require('dotenv').config()
