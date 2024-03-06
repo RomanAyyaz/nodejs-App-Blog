@@ -79,7 +79,6 @@ const signUpPost = async(req,res)=>{
         res.send('password do not match')
     }
 }
-
 module.exports = {
     signUpGet,
     signUpPost
